@@ -17,10 +17,4 @@ router.get(
 
 router.get("/logout", logoutGoogle);
 
-router.get("/session", (req, res) => {
-  const user = req.session.user;
-  console.log(user);
-  res.json(user);
-});
-
 export default router;
