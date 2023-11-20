@@ -5,7 +5,9 @@ const callbackGoogle = async (req, res) => {
 
   const response = await Auth.findOne({ id: user.sub });
 
-  if (!response) {
+  if (response) {
+    await Auth.findOneAndUpdate({ id: response.id }, { loggedIn: true });
+  } else {
     await Auth.create({
       id: user.sub,
       name: user.name,
@@ -21,7 +23,9 @@ const callbackGoogle = async (req, res) => {
   );
 };
 
-const logoutGoogle = (req, res) => {
+const logoutGoogle = async (req, res) => {
+  await Auth.findOneAndUpdate({ id: req.query.userID }, { loggedIn: false });
+
   req.logOut();
   res.redirect("https://expenser-v1.netlify.app");
 };

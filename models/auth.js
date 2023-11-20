@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  loggedIn: {
+    type: String,
+    default: true,
+  },
 });
 
 export default mongoose.model("auth", userSchema);
