@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 
 import "./passport.js";
 import authRoutes from "./routes/auth.js";
+import mongoose from "mongoose";
 
 config();
 const app = express();
@@ -32,5 +33,6 @@ app.use(passport.session());
 
 app.use("/auth", authRoutes);
 
+mongoose.connect(process.env.MONGO_URI);
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server is listening on port ${port}!`));
