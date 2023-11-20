@@ -33,7 +33,7 @@ router.get("/login/failed", (req, res) => {
 
 router.get("/logout", (req, res) => {
   req.logOut();
-  res.redirect("https://expenser-v1.netlify.app/");
+  res.redirect("https://expenser-v1.netlify.app");
 });
 
 export default router;
