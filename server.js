@@ -1,10 +1,34 @@
-import dotenv from 'dotenv'
-import express from 'express'
+import { config } from "dotenv";
+import express from "express";
+import cookieSession from "cookie-session";
+import passport from "passport";
+import cors from "cors";
 
-dotenv.config();
-const app = express()
+import "./passport.js";
+import authRoutes from "./routes/auth.js";
 
-app.get('/', (req, res) => res.send('Hello World!'))
+config();
+const app = express();
+
+app.use(
+  cookieSession({
+    name: "session",
+    keys: ["expenser"],
+    maxAge: 24 * 60 * 60 * 1000,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(
+  cors({
+    origin: "*",
+    methods: "*",
+    credentials: true,
+  })
+);
+
+app.use("/auth", authRoutes);
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Server is listening on port ${port}!`))
+app.listen(port, () => console.log(`Server is listening on port ${port}!`));
