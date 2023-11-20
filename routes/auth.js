@@ -17,4 +17,6 @@ router.get(
 
 router.get("/logout", logoutGoogle);
 
+router.get("/session", logoutGoogle);
+
 export default router;

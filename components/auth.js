@@ -1,4 +1,14 @@
-const callbackGoogle = (req, res) => {
+import Auth from "../models/auth.js";
+
+const callbackGoogle = async (req, res) => {
+  const user = req.user._json;
+  await Auth.create({
+    id: user.sub,
+    name: user.name,
+    email: user.email,
+    pictureURI: user.picture,
+  });
+
   res.redirect(
     `https://expenser-v1.netlify.app?user=${encodeURIComponent(
       JSON.stringify(req.user._json)
