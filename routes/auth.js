@@ -1,6 +1,5 @@
 import express from "express";
 import passport from "passport";
-import cors from "cors";
 
 const router = express.Router();
 
@@ -24,6 +23,12 @@ router.get(
 router.get("/logout", (req, res) => {
   req.logOut();
   res.redirect("https://expenser-v1.netlify.app");
+});
+
+router.get("/session", (req, res) => {
+  const user = req.session.user;
+  console.log(user);
+  res.json(user);
 });
 
 export default router;
