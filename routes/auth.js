@@ -22,7 +22,16 @@ router.get(
 
 router.get("/logout", (req, res) => {
   req.logOut();
+  res.redirect("/proxy-logout");
+});
+
+router.get("/proxy-logout", (req, res) => {
   res.redirect("https://expenser-v1.netlify.app");
 });
+
+// router.get("/logout", (req, res) => {
+//   req.logOut();
+//   res.redirect("https://expenser-v1.netlify.app");
+// });
 
 export default router;
