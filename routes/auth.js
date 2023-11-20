@@ -25,4 +25,10 @@ router.get("/logout", (req, res) => {
   res.redirect("https://expenser-v1.netlify.app");
 });
 
+router.get("/session", (req, res) => {
+  const user = req.session.user;
+  console.log(user);
+  res.json(user);
+});
+
 export default router;
