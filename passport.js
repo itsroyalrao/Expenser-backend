@@ -3,8 +3,8 @@ import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 
 const GOOGLE_CLIENT_ID =
-  "967030061944-3f2glk3qq4gabhheffkkcmb8n5k5c722.apps.googleusercontent.com";
-const GOOGLE_CLIENT_SECRET = "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";
+  "967030061944-q61p9s66r068cn19bg5tfp8fm6sjtavs.apps.googleusercontent.com";
+const GOOGLE_CLIENT_SECRET = "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";
 
 passport.use(
   new GoogleStrategy(
