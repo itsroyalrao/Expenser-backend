@@ -1,16 +1,13 @@
 import passport from "passport";
-
+import { config } from "dotenv";
+config();
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
-
-const GOOGLE_CLIENT_ID =
-  "879786406265-d854ttdo68h5ggkeptbrgjrop1egg8bi.apps.googleusercontent.com";
-const GOOGLE_CLIENT_SECRET = "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";
 
 passport.use(
   new GoogleStrategy(
     {
-      clientID: GOOGLE_CLIENT_ID,
-      clientSecret: GOOGLE_CLIENT_SECRET,
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL:
         "https://expenser-backend-production.up.railway.app/auth/google/callback",
     },
