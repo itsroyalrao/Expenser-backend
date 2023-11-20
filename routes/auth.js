@@ -22,7 +22,7 @@ router.get(
 
 router.get("/logout", (req, res) => {
   req.logOut();
-  res.redirect("/proxy-logout");
+  res.redirect("/auth/proxy-logout");
 });
 
 router.get("/proxy-logout", (req, res) => {
