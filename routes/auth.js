@@ -1,22 +1,5 @@
-import express from "express";
-import passport from "passport";
-import { callbackGoogle, logoutGoogle, session } from "../components/auth.js";
+// import express from "express";
 
-const router = express.Router();
+// const router = express.Router();
 
-router.get(
-  "/google",
-  passport.authenticate("google", { scope: ["email", "profile"] })
-);
-
-router.get(
-  "/google/callback",
-  passport.authenticate("google", { failureRedirect: "/login" }),
-  callbackGoogle
-);
-
-router.get("/logout", logoutGoogle);
-
-router.post("/session", session);
-
-export default router;
+// export default router;

@@ -1,37 +1,21 @@
 import { config } from "dotenv";
 import express from "express";
-import cookieSession from "cookie-session";
-import passport from "passport";
 import cors from "cors";
-import cookieParser from "cookie-parser";
-
-import "./passport.js";
-import authRoutes from "./routes/auth.js";
+// import authRoutes from "./routes/auth.js";
 import mongoose from "mongoose";
 
 config();
 const app = express();
 
 app.use(express.json());
-app.use(cookieParser());
 app.use(
   cors({
     origin: "https://expenser-v1.netlify.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
   })
 );
-app.use(
-  cookieSession({
-    name: "session",
-    keys: ["expenser"],
-    maxAge: 24 * 60 * 60 * 1000,
-  })
-);
-app.use(passport.initialize());
-app.use(passport.session());
 
-app.use("/auth", authRoutes);
+// app.use("/auth", authRoutes);
 
 mongoose.connect(process.env.MONGO_URI);
 const port = process.env.PORT || 3000;
