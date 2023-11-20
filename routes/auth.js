@@ -1,5 +1,5 @@
 import express from "express";
-import { callbackGoogle, logoutGoogle } from "../components/auth";
+import { callbackGoogle, logoutGoogle } from "../components/auth.js";
 import passport from "passport";
 
 const router = express.Router();
