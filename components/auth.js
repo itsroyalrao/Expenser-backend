@@ -26,8 +26,10 @@ const logoutGoogle = (req, res) => {
   res.redirect("https://expenser-v1.netlify.app");
 };
 
-const session = async () => {
-  const user = await Auth.findOne({});
+const session = async (req, res) => {
+  const user = await Auth.findOne({ id: req.body.userID });
+  if (user) return res.json({ success: true });
+  else return res.json({ success: false });
 };
 
-export { callbackGoogle, logoutGoogle };
+export { callbackGoogle, logoutGoogle, session };

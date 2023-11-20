@@ -1,6 +1,6 @@
 import express from "express";
 import passport from "passport";
-import { callbackGoogle, logoutGoogle } from "../components/auth.js";
+import { callbackGoogle, logoutGoogle, session } from "../components/auth.js";
 
 const router = express.Router();
 
@@ -17,6 +17,6 @@ router.get(
 
 router.get("/logout", logoutGoogle);
 
-router.get("/session", logoutGoogle);
+router.get("/session", session);
 
 export default router;
