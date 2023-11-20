@@ -3,7 +3,7 @@ import Auth from "../models/auth.js";
 const callbackGoogle = async (req, res) => {
   const user = req.user._json;
 
-  const response = await Auth.findOne({ email: user.email });
+  const response = await Auth.findOne({ id: user.sub });
 
   if (!response) {
     await Auth.create({
@@ -24,6 +24,10 @@ const callbackGoogle = async (req, res) => {
 const logoutGoogle = (req, res) => {
   req.logOut();
   res.redirect("https://expenser-v1.netlify.app");
+};
+
+const session = async () => {
+  const user = await Auth.findOne({});
 };
 
 export { callbackGoogle, logoutGoogle };
