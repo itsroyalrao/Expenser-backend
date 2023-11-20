@@ -22,8 +22,8 @@ app.use(passport.session());
 
 app.use(
   cors({
-    origin: "*",
-    methods: "*",
+    origin: "https://expenser-v1.netlify.app",
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
