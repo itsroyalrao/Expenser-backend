@@ -1,5 +1,6 @@
 import express from "express";
 import passport from "passport";
+import { callbackGoogle, logoutGoogle } from "../components/auth.js";
 
 const router = express.Router();
 
@@ -11,19 +12,10 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/login" }),
-  function (req, res) {
-    res.redirect(
-      `https://expenser-v1.netlify.app?user=${encodeURIComponent(
-        JSON.stringify(req.user._json)
-      )}`
-    );
-  }
+  callbackGoogle
 );
 
-router.get("/logout", (req, res) => {
-  req.logOut();
-  res.redirect("https://expenser-v1.netlify.app");
-});
+router.get("/logout", logoutGoogle);
 
 router.get("/session", (req, res) => {
   const user = req.session.user;
