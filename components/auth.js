@@ -24,10 +24,12 @@ const callbackGoogle = async (req, res) => {
 };
 
 const logoutGoogle = async (req, res) => {
-  await Auth.findOneAndUpdate({ id: req.query.userID }, { loggedIn: false });
+  if (req.query.userID) {
+    await Auth.findOneAndUpdate({ id: req.query.userID }, { loggedIn: false });
 
-  req.logOut();
-  res.redirect("https://expenser-v1.netlify.app");
+    req.logOut();
+    res.redirect("https://expenser-v1.netlify.app");
+  }
 };
 
 const session = async (req, res) => {
