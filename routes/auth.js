@@ -20,17 +20,6 @@ router.get(
   }
 );
 
-router.get("/login/success", (req, res) => {
-  console.log(req.user);
-  if (req.user) {
-    res.json({ success: true, user: req.user, cookies: req.cookies });
-  }
-});
-
-router.get("/login/failed", (req, res) => {
-  res.json({ success: false, msg: "Something went wrong" });
-});
-
 router.get("/logout", (req, res) => {
   req.logOut();
   res.redirect("https://expenser-v1.netlify.app");
