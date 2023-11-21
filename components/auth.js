@@ -31,7 +31,7 @@ const getUser = async (req, res) => {
       bcrypt.compare(password, user.password, async (err, same) => {
         if (same) {
           const token = setUser(user);
-          res.cookie("uid", token);
+          res.cookie("uid", token, { sameSite: "None", secure: true });
           return res.json({ success: true, token });
         } else
           return res.json({ success: false, msg: "Password is incorrect" });
