@@ -32,9 +32,9 @@ const getUser = async (req, res) => {
         if (same) {
           const token = setUser(user);
           res.cookie("uid", token, {
-            expires: new Date(Date.now() + 86400000),
-            path: "/",
+            sameSite: "None",
             secure: true,
+            maxAge: 86400000,
           });
           return res.json({ success: true, token });
         } else
