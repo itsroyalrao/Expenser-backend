@@ -1,5 +1,11 @@
-// import express from "express";
+import express from "express";
+import { addUser, findUser, getUser, logoutUser } from "../components/auth.js";
 
-// const router = express.Router();
+const router = express.Router();
 
-// export default router;
+router.route("/").get(findUser);
+router.route("/signup").post(addUser);
+router.route("/login").post(getUser);
+router.route("/logout").post(logoutUser);
+
+export default router;
