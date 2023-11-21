@@ -1,7 +1,6 @@
 import bcrypt from "bcrypt";
 
 import Auth from "../models/auth.js";
-import { setUser } from "../service/auth.js";
 
 const addUser = async (req, res) => {
   try {
@@ -30,13 +29,8 @@ const getUser = async (req, res) => {
     if (user) {
       bcrypt.compare(password, user.password, async (err, same) => {
         if (same) {
-          const token = setUser(user);
-          res.cookie("uid", token, {
-            sameSite: "None",
-            secure: true,
-            maxAge: 86400000,
-          });
-          return res.json({ success: true, token });
+          await Auth.findOneAndUpdate({ email }, { loggedIn: true });
+          return res.json({ success: true });
         } else
           return res.json({ success: false, msg: "Password is incorrect" });
       });
@@ -46,4 +40,15 @@ const getUser = async (req, res) => {
   }
 };
 
-export { addUser, getUser };
+const logoutUser = async (req, res) => {
+  try {
+    await Auth.findOneAndUpdate(
+      { email: req.query.email },
+      { loggedIn: false }
+    );
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export { addUser, getUser, logoutUser };

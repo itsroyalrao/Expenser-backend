@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  loggedIn: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 export default mongoose.model("auth", userSchema);
