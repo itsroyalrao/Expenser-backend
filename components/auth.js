@@ -32,7 +32,7 @@ const getUser = async (req, res) => {
         if (same) {
           const token = setUser(user);
           res.cookie("uid", token);
-          return res.json({ success: true });
+          return res.json({ success: true, token });
         } else
           return res.json({ success: false, msg: "Password is incorrect" });
       });
