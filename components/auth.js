@@ -46,6 +46,7 @@ const logoutUser = async (req, res) => {
       { email: req.query.email },
       { loggedIn: false }
     );
+    res.json({ success: true });
   } catch (e) {
     console.log(e);
   }
