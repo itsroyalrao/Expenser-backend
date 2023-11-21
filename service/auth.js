@@ -1,5 +1,8 @@
+import { config } from "dotenv";
+config();
+
 import jwt from "jsonwebtoken";
-const secret = "$mohit$rao$";
+const secret = process.env.JWT_SECRET;
 
 const setUser = (user) => {
   return jwt.sign(
@@ -12,8 +15,30 @@ const setUser = (user) => {
 };
 
 const getUser = (token) => {
-  if (token) return jwt.verify(token, secret);
-  else return null;
+  if (token) {
+    try {
+      return jwt.verify(token, secret);
+    } catch (error) {
+      return null;
+    }
+  } else return null;
 };
 
-export { setUser, getUser };
+const verifyToken = (req, res, next) => {
+  const token = req.headers.authorization;
+
+  if (token) {
+    jwt.verify(token, secret, (err, valid) => {
+      if (err) {
+        return res.json({ success: false, msg: "Token is invalid" });
+      } else {
+        req.tokenPayload = valid;
+        next();
+      }
+    });
+  } else {
+    return res.json({ success: false, msg: "Token is empty" });
+  }
+};
+
+export { setUser, getUser, verifyToken };

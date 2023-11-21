@@ -2,27 +2,11 @@ import { config } from "dotenv";
 import express from "express";
 import cors from "cors";
 import authRoutes from "./routes/auth.js";
+import homeRoutes from "./routes/home.js";
 import mongoose from "mongoose";
-import session from "express-session";
-import cookieParser from "cookie-parser";
-import bodyParser from "body-parser";
 
 config();
 const app = express();
-
-app.use(cookieParser());
-app.use(bodyParser.json());
-app.use(
-  session({
-    secret: "secret",
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      secure: false,
-      maxAge: 24 * 60 * 60 * 1000,
-    },
-  })
-);
 
 app.use(express.json());
 app.use(
@@ -34,6 +18,7 @@ app.use(
 );
 
 app.use("/auth", authRoutes);
+app.use("/home", homeRoutes);
 
 mongoose.connect(process.env.MONGO_URI);
 const port = process.env.PORT || 3000;
