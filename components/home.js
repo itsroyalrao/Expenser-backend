@@ -54,9 +54,9 @@ const addExpense = async (req, res) => {
   }
 };
 
-const totalExpense = async (req, res) => {
+const allExpenses = async (req, res) => {
   try {
-    const expense = await Expense.findOne({ email: req.query.email }).sort({
+    const expense = await Expense.find({ email: req.query.email }).sort({
       _id: -1,
     });
     res.json({ success: true, expense });
@@ -65,4 +65,4 @@ const totalExpense = async (req, res) => {
   }
 };
 
-export { findUser, addExpense, totalExpense };
+export { findUser, addExpense, allExpenses };

@@ -1,11 +1,11 @@
 import express from "express";
 
-import { findUser, addExpense, totalExpense } from "../components/home.js";
+import { findUser, addExpense, allExpenses } from "../components/home.js";
 
 const router = express.Router();
 
 router.get("/", findUser);
 router.post("/addExpense", addExpense);
-router.get("/totalExpense", totalExpense);
+router.get("/allExpenses", allExpenses);
 
 export default router;
