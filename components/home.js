@@ -28,7 +28,6 @@ const addExpense = async (req, res) => {
     });
 
     if (expense) {
-      console.log("if part");
       const totalAmount = Number(amount) + expense.totalAmount;
       const result = await Expense.create({
         email,
@@ -39,7 +38,6 @@ const addExpense = async (req, res) => {
       });
       return res.json({ success: true, result });
     } else {
-      console.log("else part");
       const result = await Expense.create({
         email,
         expenseType,
