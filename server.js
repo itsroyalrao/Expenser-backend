@@ -1,9 +1,11 @@
 import { config } from "dotenv";
 import express from "express";
 import cors from "cors";
+import mongoose from "mongoose";
+
 import authRoutes from "./routes/auth.js";
 import homeRoutes from "./routes/home.js";
-import mongoose from "mongoose";
+import paymentRoute from "./routes/payments.js";
 
 config();
 const app = express();
@@ -19,6 +21,7 @@ app.use(
 
 app.use("/auth", authRoutes);
 app.use("/home", homeRoutes);
+app.use("/payment", paymentRoute);
 
 mongoose.connect(process.env.MONGO_URI);
 const port = process.env.PORT || 3000;
