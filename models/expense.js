@@ -22,10 +22,6 @@ const expenseSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    firstExpenseTime: {
-      type: Date,
-      default: Date.now(),
-    },
   },
   { timestamps: true }
 );

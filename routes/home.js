@@ -1,6 +1,7 @@
 import express from "express";
 
-import { findUser, addExpense, allExpenses } from "../controllers/home.js";
+import { addExpense, allExpenses } from "../controllers/home.js";
+import { findUser } from "../controllers/auth.js";
 
 const router = express.Router();
 

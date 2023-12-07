@@ -40,6 +40,25 @@ const getUser = async (req, res) => {
   }
 };
 
+const findUser = async (req, res) => {
+  try {
+    const user = await Auth.findOne({ email: req.query.user });
+
+    if (user)
+      return res.json({
+        success: true,
+        user: {
+          username: user.username,
+          email: user.email,
+          loggedIn: user.loggedIn,
+        },
+      });
+    else return res.json({ success: false });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 const logoutUser = async (req, res) => {
   try {
     await Auth.findOneAndUpdate(
@@ -52,4 +71,4 @@ const logoutUser = async (req, res) => {
   }
 };
 
-export { addUser, getUser, logoutUser };
+export { addUser, getUser, logoutUser, findUser };

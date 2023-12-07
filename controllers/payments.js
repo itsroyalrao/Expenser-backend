@@ -1,10 +1,9 @@
 import Razorpay from "razorpay";
 import Payment from "../models/payments.js";
-// import Auth from "../models/auth.js"
+// import Auth from "../models/auth.js";
 
 const getPaymentID = async (req, res) => {
   try {
-    console.log("sdjbfvjdsbvkjds");
     var instance = new Razorpay({
       key_id: process.env.RAZORPAY_KEY_ID,
       key_secret: process.env.RAZORPAY_KEY_SECRET,
@@ -35,6 +34,16 @@ const createPayment = async (req, res) => {
   }
 };
 
+const getPremiumStatus = async (req, res) => {
+  try {
+    const user = await Payment.findOne({ user: req.query.user });
+    if (user) res.status(200).json({ success: true });
+    else res.json({ success: false });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 const getLeaderboard = async (req, res) => {
   try {
     const userData = await Auth.find({}).sort({ totalExpense: "desc" });
@@ -44,4 +53,4 @@ const getLeaderboard = async (req, res) => {
   }
 };
 
-export { createPayment, getPaymentID, getLeaderboard };
+export { createPayment, getPaymentID, getLeaderboard, getPremiumStatus };
