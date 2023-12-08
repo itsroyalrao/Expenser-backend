@@ -7,9 +7,10 @@ const addExpense = async (req, res) => {
     const expense = await Expense.findOne({ email }).sort({
       _id: -1,
     });
+    const user = await Auth.findOne({ email });
 
     if (expense) {
-      const totalAmount = Number(amount) + expense.totalAmount;
+      const totalAmount = Number(amount) + user.totalAmount;
       await Auth.findOneAndUpdate({ email }, { totalAmount });
       const result = await Expense.create({
         email,
