@@ -101,8 +101,7 @@ const resetPassword = async (req, res) => {
       from: "my701319@gmail.com",
       to: email,
       subject: "Reset Password Link",
-      html: `<h4>Click <a href="http://localhost:5173/changePassword?email=${email}">Here</a> to change your password.</h4>`,
-      // html: `<h4>Click <a href="https://todo-v0.netlify.app/changePassword?email=${email}">Here</a> to change your password.</h4>`,
+      html: `<h4>Click <a href="https://expenser-v1.netlify.app/changePassword?email=${email}">Here</a> to change your password.</h4>`,
     };
 
     try {
