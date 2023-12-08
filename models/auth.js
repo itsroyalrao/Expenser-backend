@@ -18,6 +18,11 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
+  totalAmount: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
 });
 
 export default mongoose.model("auth", userSchema);

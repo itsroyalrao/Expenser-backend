@@ -10,6 +10,7 @@ const addExpense = async (req, res) => {
 
     if (expense) {
       const totalAmount = Number(amount) + expense.totalAmount;
+      await Auth.findOneAndUpdate({ email }, { totalAmount });
       const result = await Expense.create({
         email,
         expenseType,
@@ -19,6 +20,7 @@ const addExpense = async (req, res) => {
       });
       return res.json({ success: true, result });
     } else {
+      await Auth.findOneAndUpdate({ email }, { totalAmount: amount });
       const result = await Expense.create({
         email,
         expenseType,
