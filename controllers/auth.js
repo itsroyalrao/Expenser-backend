@@ -71,4 +71,16 @@ const logoutUser = async (req, res) => {
   }
 };
 
-export { addUser, getUser, logoutUser, findUser };
+const leaderboardDetails = async (req, res) => {
+  try {
+    const users = await Auth.find().sort({ totalAmount: -1 });
+    const lb = users.map((user) => {
+      return { email: user.email, total: user.totalAmount };
+    });
+    res.json({ success: true, lb });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export { addUser, getUser, logoutUser, findUser, leaderboardDetails };

@@ -16,7 +16,6 @@ const addExpense = async (req, res) => {
         expenseType,
         amount,
         description,
-        totalAmount,
       });
       return res.json({ success: true, result });
     } else {
@@ -26,7 +25,6 @@ const addExpense = async (req, res) => {
         expenseType,
         amount,
         description,
-        totalAmount: amount,
       });
       return res.json({ success: true, result });
     }
