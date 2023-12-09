@@ -1,6 +1,6 @@
 import Razorpay from "razorpay";
 import Payment from "../models/payments.js";
-// import Auth from "../models/auth.js";
+import Auth from "../models/auth.js";
 
 const getPaymentID = async (req, res) => {
   try {
