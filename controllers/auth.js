@@ -86,6 +86,7 @@ const leaderboardDetails = async (req, res) => {
 
 const resetPassword = async (req, res) => {
   const { email } = req.body;
+  console.log(email, 12);
   const user = await Auth.findOne({ email: email });
 
   if (user) {
