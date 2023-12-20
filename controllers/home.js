@@ -4,9 +4,7 @@ import Expense from "../models/expense.js";
 const addExpense = async (req, res) => {
   try {
     const { expenseType, amount, description, email } = req.body;
-    const expense = await Expense.findOne({ email }).sort({
-      _id: -1,
-    });
+    const expense = await Expense.findOne({ email });
     const user = await Auth.findOne({ email });
 
     if (expense) {

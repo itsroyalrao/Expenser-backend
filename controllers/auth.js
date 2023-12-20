@@ -92,13 +92,13 @@ const resetPassword = async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "my701319@gmail.com",
+        user: "iitsroyalrao@gmail.com",
         pass: process.env.GMAIL_PASS,
       },
     });
 
     let message = {
-      from: "my701319@gmail.com",
+      from: "iitsroyalrao@gmail.com",
       to: email,
       subject: "Reset Password Link",
       html: `<h4>Click <a href="https://expenser-v1.netlify.app/changePassword?email=${email}">Here</a> to change your password.</h4>`,
