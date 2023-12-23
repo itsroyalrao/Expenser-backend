@@ -25,4 +25,4 @@ app.use("/payment", paymentRoute);
 
 mongoose.connect(process.env.MONGO_URI);
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Server is listening on port ${port}!`));
+app.listen(port, () => console.log(`Server is listening on ${port}!`));
